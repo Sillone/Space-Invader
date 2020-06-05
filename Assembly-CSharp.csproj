@@ -68,13 +68,9 @@
     <Compile Include="Assets\DataBase\DataHealth.cs" />
     <Compile Include="Assets\DataBase\DataMove.cs" />
     <Compile Include="Assets\DataBase\DataShoot.cs" />
+    <Compile Include="Assets\Scripts\Actors\Actor.cs" />
     <Compile Include="Assets\Scripts\Actors\ActorBase.cs" />
-    <Compile Include="Assets\Scripts\Actors\ActorBullet.cs" />
-    <Compile Include="Assets\Scripts\Actors\ActorEnemy.cs" />
-    <Compile Include="Assets\Scripts\Actors\ActorPlayer.cs" />
     <Compile Include="Assets\Scripts\BehaviorManager\Colider\ICollisionEnter.cs" />
-    <Compile Include="Assets\Scripts\BehaviorManager\Event\IHandleEvent.cs" />
-    <Compile Include="Assets\Scripts\BehaviorManager\Event\ManagerEvent.cs" />
     <Compile Include="Assets\Scripts\BehaviorManager\IAwake.cs" />
     <Compile Include="Assets\Scripts\BehaviorManager\ManagerBase.cs" />
     <Compile Include="Assets\Scripts\BehaviorManager\ManagerSpawn.cs" />
@@ -90,10 +86,12 @@
     <Compile Include="Assets\Scripts\BehaviorScripts\BehaviourBase.cs" />
     <Compile Include="Assets\Scripts\BehaviorScripts\BulletBehaviour\BehaviourBulletMove.cs" />
     <Compile Include="Assets\Scripts\BehaviorScripts\BulletBehaviour\BehaviourLiveBullet.cs" />
+    <Compile Include="Assets\Scripts\BehaviorScripts\BulletBehaviour\IEnable.cs" />
     <Compile Include="Assets\Scripts\BehaviorScripts\EnemyBehaviour\BehaviourSimpleEnemyMove.cs" />
     <Compile Include="Assets\Scripts\BehaviorScripts\PlayerBehaviour\BehaviorMove.cs" />
     <Compile Include="Assets\Scripts\BehaviorScripts\PlayerBehaviour\BehaviourGetDamage.cs" />
     <Compile Include="Assets\Scripts\BehaviorScripts\PlayerBehaviour\BehaviourShootPlayer.cs" />
+    <Compile Include="Assets\Scripts\ManagerScripts.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Starter.cs" />
     <Compile Include="Assets\Scripts\ToolBox.cs" />

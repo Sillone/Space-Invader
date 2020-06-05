@@ -2,7 +2,6 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "BehaviorEnemy", menuName = "EnemyMove")]
 public class BehaviourSimpleEnemyMove : BehaviourBase, IFixedTick,ICollisionEnter
 {
     private Rigidbody rigibodyGO;

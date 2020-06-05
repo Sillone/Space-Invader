@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="LiveBullet",menuName ="Behaviour/Bullet/LiveBulletBehaviour")]
 public class BehaviourLiveBullet : BehaviourBase, ICollisionEnter
 {
     ActorBase actor;

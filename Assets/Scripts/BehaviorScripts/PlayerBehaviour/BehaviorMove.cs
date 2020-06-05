@@ -2,16 +2,17 @@
 using UnityEngine;
 
 [Serializable]
-public class BehaviorMove : IFixedTick, ITick
+public class BehaviorMove : BehaviourBase, IFixedTick, ITick
 {
     private Rigidbody rigidbody;
     private DataMove dataSpeed;
-    public BehaviorMove(ActorPlayer actor)
+    public override void SetUp(ActorBase _actor)
     {
-        rigidbody = actor.gameObject.GetComponent<Rigidbody>();
-        dataSpeed = actor.GetData<DataMove>();
-    
+        
+        rigidbody = _actor.gameObject.GetComponent<Rigidbody>();
+        dataSpeed = _actor.GetData<DataMove>();
     }
+
     public void FixedTick()
     {
         var velocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * dataSpeed.Speed ;

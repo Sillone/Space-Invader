@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ActorPlayer))]
+[CustomEditor(typeof(Actor))]
 public class ActorEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        ActorPlayer actor = (ActorPlayer)target;
+        Actor actor = (Actor)target;
         base.OnInspectorGUI();
     }
     

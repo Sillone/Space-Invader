@@ -13,8 +13,8 @@ public class BehaviourGetDamage : BehaviourBase, ICollisionEnter
     }
     public void CollisionEnter(Collision collision)
     {
-        ActorBullet hitactor;
-        collision.gameObject.TryGetComponent<ActorBullet>(out hitactor);
+        ActorBase hitactor;
+        collision.gameObject.TryGetComponent<ActorBase>(out hitactor);
         if (hitactor)
         {
             var damage = hitactor.GetData<DataBullet>().Damage;

@@ -2,11 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BehaviourBulletMove", menuName = "Behaviour/Bullet/Move Bullet Behaviour")]
-public class BehaviourBulletMove : BehaviourBase
+public class BehaviourBulletMove : BehaviourBase, IEnable
 {
+    Rigidbody rigidbodyGO;
+    float speed = 10;
+
     public override void SetUp(ActorBase _actor)
     {
-        _actor.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * _actor.GetData<DataBullet>().speed,ForceMode.VelocityChange);
+        rigidbodyGO = _actor.GetComponent<Rigidbody>();
+        speed = _actor.GetData<DataBullet>().speed;
     }
+    public void OnEnable()
+    {
+        rigidbodyGO.AddRelativeForce(Vector3.forward * speed, ForceMode.VelocityChange);
+    }
+
+   
+    
 }
