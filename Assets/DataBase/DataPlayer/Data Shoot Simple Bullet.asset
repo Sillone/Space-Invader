@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 2033789862064489441, guid: 67eebd45bb548c1459e2054e9a72fd5c,
     type: 3}
-  AmmoCount: 30
-  ReloadTime: 0
-  delayShoot: 0.5
+  BurstsAmmoCount: 3
+  ReloadTime: 5
+  delayShoot: 3

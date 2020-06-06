@@ -10,7 +10,7 @@ public class ManagerUpdate : ManagerBase, IAwake
     public void AddTo(object updateble)
     {
         var mngUpdate = ToolBox.Get<ManagerUpdate>();
-        if (updateble is ITick)
+        if (updateble is IFixedTick)
             mngUpdate.ticks.Add(updateble as ITick);
 
         if (updateble is IFixedTick)
@@ -23,7 +23,7 @@ public class ManagerUpdate : ManagerBase, IAwake
     public static void RemoveFrom(object updateble)
     {
         var mngUpdate = ToolBox.Get<ManagerUpdate>();
-        if (updateble is ITick)
+        if (updateble is IFixedTick)
             mngUpdate.ticks.Remove(updateble as ITick);
 
         if (updateble is IFixedTick)

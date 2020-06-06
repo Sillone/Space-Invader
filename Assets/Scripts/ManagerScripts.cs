@@ -10,6 +10,8 @@ public enum ScriptType
     BehaviourLiveBullet,
     BehaviourShootPlayer,
     BehaviourSimpleEnemyMove,
+    BehaviourEnemyShoot
+
 }
 [CreateAssetMenu(fileName = "ManagerEvent", menuName = "Manager/ManagerScript")]
 public class ManagerScripts : ManagerBase
@@ -30,10 +32,12 @@ public class ManagerScripts : ManagerBase
                 return new BehaviourShootPlayer();
             case ScriptType.BehaviourSimpleEnemyMove:
                 return new BehaviourSimpleEnemyMove();
+            case ScriptType.BehaviourEnemyShoot:
+                return new BehaviourEnemyShoot();
             default:
                 return null;
         }
-
+        
     }
 
 }

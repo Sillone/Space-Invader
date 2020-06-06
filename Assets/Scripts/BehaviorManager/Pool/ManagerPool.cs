@@ -22,6 +22,7 @@ public class ManagerPool : ManagerBase
                 poolGO.transform.SetParent(poolsGO.transform);
                 pool.SetParent(poolGO.transform);
 
+
             }
         }
 

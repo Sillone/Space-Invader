@@ -13,6 +13,7 @@ public class BehaviourSimpleEnemyMove : BehaviourBase, IFixedTick,ICollisionEnte
     {
         rigibodyGO = _actor.gameObject.GetComponent<Rigidbody>();
         dataMove = _actor.GetData<DataEnemyMove>();
+        timer = dataMove.MaxTime;
     }
     public void FixedTick()
     {

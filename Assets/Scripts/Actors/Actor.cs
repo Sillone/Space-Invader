@@ -4,7 +4,7 @@ using System.Dynamic;
 using UnityEngine;
 
 [Serializable]
-public class Actor : ActorBase, ITick, IFixedTick, ILateTick
+public class Actor : ActorBase, ITick, IFixedTick, ILateTick,IPoolable
 {
 
     private List<ITick> ticks = new List<ITick>();
@@ -42,10 +42,10 @@ public class Actor : ActorBase, ITick, IFixedTick, ILateTick
 
     public void Add(object obj)
     {
-        if (obj is IFixedTick)
-            fixedTicks.Add(obj as IFixedTick);
         if (obj is ITick)
             ticks.Add(obj as ITick);
+        if (obj is IFixedTick)
+            fixedTicks.Add(obj as IFixedTick);      
         if (obj is ICollisionEnter)
             collisonsEnter.Add(obj as ICollisionEnter);
         if (obj is IEnable)
@@ -62,8 +62,7 @@ public class Actor : ActorBase, ITick, IFixedTick, ILateTick
     {
         for (int i = 0; i < ticks.Count; i++)
         {
-            ticks[i].Tick();
-            this.gameObject.GetComponent<Animator>().SetFloat("Speed", gameObject.GetComponent<Rigidbody>().velocity.z);
+            ticks[i].Tick();           
         }
     }
     public void FixedTick()
@@ -95,5 +94,17 @@ public class Actor : ActorBase, ITick, IFixedTick, ILateTick
         {
             item.OnEnable();
         }
+    }
+
+    public void OnSpawn()
+    {
+        
+    }
+
+    public void OnDespawn()
+    {
+        gameObject.transform.position = Vector3.zero;
+        gameObject.transform.rotation= Quaternion.identity;
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }

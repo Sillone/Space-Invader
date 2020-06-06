@@ -58,7 +58,7 @@ public class Pool
 			else
 			{
  				transform.localPosition = position;
-				Physics.IgnoreCollision(transform.GetComponent<Collider>(), parent.GetComponent<Collider>());
+			//	Physics.IgnoreCollision(transform.GetComponent<Collider>(), parent.GetComponent<Collider>());
 			}
 				
 			var poolable = transform.GetComponent<IPoolable>();

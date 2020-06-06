@@ -6,7 +6,7 @@ public class BehaviourShootPlayer : BehaviourBase ,ITick
 {
     private ActorBase actor;
     ManagerPool pool;
-    private List<GameObject> poolables = new List<GameObject>();
+    private Queue<GameObject> poolables = new Queue<GameObject>();
     private DataShoot dataShoot;
 
     public override void SetUp(ActorBase _actor)
@@ -18,10 +18,10 @@ public class BehaviourShootPlayer : BehaviourBase ,ITick
 
     public void Tick()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKey(KeyCode.Space))
         {
-            poolables.Add(pool.Spawn(PoolType.Bullet,dataShoot.BulletPrefab, rotation:actor.transform.localRotation,parent:actor.gameObject.transform));
-            
+          var shell = pool.Spawn(PoolType.Bullet,dataShoot.BulletPrefab, rotation:actor.transform.localRotation,parent:actor.gameObject.transform);
+            shell.layer = 13;
         }
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {

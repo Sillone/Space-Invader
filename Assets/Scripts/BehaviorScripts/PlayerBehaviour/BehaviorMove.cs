@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class BehaviorMove : BehaviourBase, IFixedTick, ITick
+public class BehaviorMove : BehaviourBase, ITick, IFixedTick
 {
     private Rigidbody rigidbody;
     private DataMove dataSpeed;

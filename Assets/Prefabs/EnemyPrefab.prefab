@@ -128,4 +128,5 @@ MonoBehaviour:
   Data:
   - {fileID: 11400000, guid: e18cd5dce99aa6d4e8429c061bb44806, type: 2}
   - {fileID: 11400000, guid: 941432ff5f7373d42b11ef93c8830e82, type: 2}
-  behaviours: 0500000002000000
+  - {fileID: 11400000, guid: 92d8225e258c23745a50d504a708e4f4, type: 2}
+  behaviours: 050000000600000002000000

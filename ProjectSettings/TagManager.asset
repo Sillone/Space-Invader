@@ -19,8 +19,8 @@ TagManager:
   - SkyWallsPlayer
   - Player
   - Enemy
-  - Bullet
-  - 
+  - EnemyBullet
+  - PlayerBullet
   - 
   - 
   - 

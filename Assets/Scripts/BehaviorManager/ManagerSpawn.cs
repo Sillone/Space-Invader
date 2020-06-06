@@ -16,7 +16,8 @@ public class ManagerSpawn : ManagerBase, IAwake
     {
         var go = GameObject.Find("<Dynamic>");
         pools = ToolBox.Get<ManagerPool>();
-        pools.AdPool(gameObject[1].GetComponent<ActorBase>().PoolType, 10).PopulateWith(gameObject[1], 30, 1);
+        pools.AdPool(gameObject[1].GetComponent<ActorBase>().PoolType, 10).PopulateWith(gameObject[1], 5, 1);
+        pools.AdPool(gameObject[2].GetComponent<ActorBase>().PoolType, 10).PopulateWith(gameObject[1], 30, 1);
         GameObject.Instantiate(gameObject[0],GameObject.Find("Spawn").transform);
         for (int i = 0; i < 5; i++)
         {
