@@ -14,26 +14,7 @@ public class Pool
 
 	private Dictionary<int, int> cachedIds = new Dictionary<int, int>();
 
-
-	public Pool PopulateWith(GameObject prefab, int amount, int amountPerTick, int tickSize =1)
-	{
-		var key = prefab.GetInstanceID();
-		Stack<GameObject> stack = new Stack<GameObject>();
-		cachedObjects.Add(key, stack);
-
-		Observable.IntervalFrame(tickSize, FrameCountType.EndOfFrame).Where(val => amount > 0).Subscribe(_loop =>
-		 {
-			 Observable.Range(0, amountPerTick).Where(check => amount > 0).Subscribe(_pop =>
-				{
-					var go = Populate(prefab, Vector3.zero, Quaternion.identity, parentPool);
-					go.SetActive(false);
-					cachedIds.Add(go.GetInstanceID(), key);
-					cachedObjects[key].Push(go);
-					amount--;
-				});
-		 });
-		return this;
-	}
+	
 	public void SetParent(Transform _parent)
 	{
 
@@ -57,13 +38,12 @@ public class Pool
 				transform.position = position;
 			else
 			{
- 				transform.localPosition = position;
-			//	Physics.IgnoreCollision(transform.GetComponent<Collider>(), parent.GetComponent<Collider>());
+ 				transform.localPosition= position;			
 			}
 				
-			var poolable = transform.GetComponent<IPoolable>();
-			if (poolable!=null)
-				poolable.OnSpawn();
+			var isPoolable = transform.GetComponent<IPoolable>();
+			if (isPoolable!=null)
+				isPoolable.OnSpawn();
 			return transform.gameObject;
 		}
 
@@ -72,7 +52,14 @@ public class Pool
 
 		var createdPrefab = Populate(prefab, position, rotation, parent);
 		cachedIds.Add(createdPrefab.GetInstanceID(), key);
+		
 
+		createdPrefab.SetActive(true);
+
+		var poolable = createdPrefab.GetComponent<IPoolable>();
+		if (poolable != null)
+			poolable.OnSpawn();
+		poolable.IsPoolable = true;
 		return createdPrefab;
 	}
 
@@ -85,6 +72,7 @@ public class Pool
 			poolable.OnDespawn();
 		if (parentPool != null)
 			go.transform.SetParent(parentPool);
+		
 	}
 
 	public void Dispose()
@@ -93,10 +81,9 @@ public class Pool
 		cachedIds.Clear();
 		cachedObjects.Clear();
 
-
 	}
 
-	GameObject Populate(GameObject prefab, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Transform parent = null)
+	public GameObject Populate(GameObject prefab, Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Transform parent = null)
 	{
 		var go = Object.Instantiate(prefab, position, rotation, parent).transform;
 		if (parent == null)
@@ -104,9 +91,8 @@ public class Pool
 		else
 		{
 			go.localPosition = position;		
-		}
-			
-
+		}		
+		go.gameObject.SetActive(false);	
 		return go.gameObject;
 	}
 

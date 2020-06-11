@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05044f990c2d126478611cc09170b329, type: 3}
+  m_Name: ManagerGameUI
+  m_EditorClassIdentifier: 
+  newWaveTextPrefab: {fileID: 8976745654627830189, guid: a2787ff770bfd7745851b1c64e304808,
+    type: 3}
+  diedMenuPrefab: {fileID: 4790677260933563203, guid: 4b0686966261aef478ba0e20349b7f7f,
+    type: 3}
+  HealthBarBrefab: {fileID: 2055102559563754051, guid: a84975964357e4a4a834a83206b16971,
+    type: 3}
+  dataLevel: {fileID: 11400000, guid: 6401b450bb4d1ad4cbf0db8611aa99ea, type: 2}
+  PlayerHP: {fileID: 11400000, guid: 9ac84edaf598b764f9aa693e7c81df52, type: 2}

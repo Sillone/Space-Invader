@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d2e4a826d6bd94990897db5d2f5e17, type: 3}
+  m_Name: Data Shoot Player
+  m_EditorClassIdentifier: 
+  BulletPrefab: {fileID: 7923514474779199021, guid: 3d55f54d73d80c246bae14e7e3446e57,
+    type: 3}
+  BurstsAmmoCount: 1
+  ReloadTime: 0.2
+  delayShoot: 0.1

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class BehaviourSimpleEnemyMove : BehaviourBase, IFixedTick,ICollisionEnter
+public class BehaviourSimpleEnemyMove : BehaviourBase, IFixedTick,ICollisionEnter,IAwake
 {
     private Rigidbody rigibodyGO;
     private float timer;
@@ -19,8 +19,7 @@ public class BehaviourSimpleEnemyMove : BehaviourBase, IFixedTick,ICollisionEnte
     {
         timer += Time.fixedDeltaTime;
         if (timer >= dataMove.MaxTime)
-        {
-            rigibodyGO.velocity = Vector3.zero;
+        {          
             rigibodyGO.AddForce(CalculateDirection() * dataMove.Speed, ForceMode.VelocityChange);
             timer = 0f;
         }
@@ -44,5 +43,10 @@ public class BehaviourSimpleEnemyMove : BehaviourBase, IFixedTick,ICollisionEnte
         {
             rigibodyGO.AddForce(collision.contacts[0].normal * dataMove.Speed, ForceMode.VelocityChange);
         }
+    }
+
+    public void OnAwake()
+    {
+            timer = dataMove.MaxTime;
     }
 }

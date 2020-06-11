@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Bullet
   - Wall
+  - SpawnEnemy
+  - SpawnPlayer
+  - DiedMenu
   layers:
   - Default
   - TransparentFX

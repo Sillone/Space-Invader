@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using UnityEngine;
 
 [Serializable]
-public class Actor : ActorBase, ITick, IFixedTick, ILateTick,IPoolable
+public class Actor : ActorBase, ITick, IFixedTick, ILateTick, IPoolable, IMustBeWipe
 {
 
     private List<ITick> ticks = new List<ITick>();
     private List<IFixedTick> fixedTicks = new List<IFixedTick>();
     private List<ILateTick> lateTicks = new List<ILateTick>();
     private List<ICollisionEnter> collisonsEnter = new List<ICollisionEnter>();
-    private List<IEnable> enables= new List<IEnable>();
-
-
+    private List<IAwake> onAwake = new List<IAwake>();
     [SerializeField]
     private List<ScriptableObject> Data = new List<ScriptableObject>();
     [SerializeField]
@@ -21,23 +18,24 @@ public class Actor : ActorBase, ITick, IFixedTick, ILateTick,IPoolable
 
     private Dictionary<Type, object> data = new Dictionary<Type, object>();
 
+    public bool IsPoolable { get; set; }
+
     private void Awake()
     {
-        var mngUpdate = ToolBox.Get<ManagerUpdate>();      
-        mngUpdate.AddTo(this);    
+        IsPoolable = true;
         foreach (var item in Data)
         {
-            data.Add(item.GetType(),item);
+            data.Add(item.GetType(), item);
         }
         var mngScript = ToolBox.Get<ManagerScripts>();
-       
+
         foreach (var item in behaviours)
         {
             var comp = mngScript.GetScript(item) as BehaviourBase;
             comp.SetUp(this);
             Add(comp);
         }
-             
+
     }
 
     public void Add(object obj)
@@ -45,24 +43,24 @@ public class Actor : ActorBase, ITick, IFixedTick, ILateTick,IPoolable
         if (obj is ITick)
             ticks.Add(obj as ITick);
         if (obj is IFixedTick)
-            fixedTicks.Add(obj as IFixedTick);      
+            fixedTicks.Add(obj as IFixedTick);
         if (obj is ICollisionEnter)
             collisonsEnter.Add(obj as ICollisionEnter);
-        if (obj is IEnable)
-            enables.Add(obj as IEnable);
+        if (obj is IAwake)
+            onAwake.Add(obj as IAwake);
     }
 
     public override T GetData<T>()
     {
         object resolve;
-        data.TryGetValue(typeof(T),out resolve);
+        data.TryGetValue(typeof(T), out resolve);
         return (T)resolve;
     }
     public void Tick()
     {
         for (int i = 0; i < ticks.Count; i++)
         {
-            ticks[i].Tick();           
+            ticks[i].Tick();
         }
     }
     public void FixedTick()
@@ -88,23 +86,36 @@ public class Actor : ActorBase, ITick, IFixedTick, ILateTick,IPoolable
             item.CollisionEnter(collision);
         }
     }
-    private void OnEnable()
-    {
-        foreach (var item in enables)
-        {
-            item.OnEnable();
-        }
-    }
 
     public void OnSpawn()
     {
-        
+        IsPoolable = true;
+        var mngUpdate = ToolBox.Get<ManagerUpdate>();
+        mngUpdate.AddTo(this);
+        foreach (var item in onAwake)
+        {
+            item.OnAwake();
+        }
     }
 
     public void OnDespawn()
-    {
-        gameObject.transform.position = Vector3.zero;
-        gameObject.transform.rotation= Quaternion.identity;
+    {    
+        var mngUpdate = ToolBox.Get<ManagerUpdate>();
+        mngUpdate.RemoveFrom(this);
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        gameObject.transform.position = Vector3.zero;
+        gameObject.transform.rotation = Quaternion.identity;
+
     }
+
+    public void onDispose()
+    {
+        ticks.Clear();
+        fixedTicks.Clear();
+        lateTicks.Clear();
+        collisonsEnter.Clear();
+        onAwake.Clear();
+        data.Clear();
+    }
+  
 }

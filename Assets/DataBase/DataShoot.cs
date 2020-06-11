@@ -9,9 +9,10 @@ public class DataShoot : ScriptableObject
     [SerializeField]
     public GameObject BulletPrefab;
 
+   
     public int BurstsAmmoCount;
     public float ReloadTime;
-    public int delayShoot;
+    public float delayShoot;
 
 
 }

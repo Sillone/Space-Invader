@@ -15,7 +15,7 @@ public class BehaviorMove : BehaviourBase, ITick, IFixedTick
 
     public void FixedTick()
     {
-        var velocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * dataSpeed.Speed ;
+        var velocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized * dataSpeed.Speed ;
         rigidbody.velocity = velocity;
 
     }

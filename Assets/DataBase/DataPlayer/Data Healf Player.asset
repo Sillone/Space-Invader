@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dc2ebc4eed87f4ab2a60a091f9ad15, type: 3}
   m_Name: Data Healf Player
   m_EditorClassIdentifier: 
-  Health: 10
+  Health: 50
+  MaxHealth: 50

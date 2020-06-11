@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="MAnagerPool",menuName ="ManagerPool")]
+[CreateAssetMenu(fileName = "MAnagerPool", menuName = "ManagerPool")]
 public class ManagerPool : ManagerBase
 {
     Dictionary<int, Pool> pools = new Dictionary<int, Pool>();
@@ -36,14 +36,14 @@ public class ManagerPool : ManagerBase
         Pool pool;
         if (pools.TryGetValue((int)id, out pool) == false)
         {
-           pool = AdPool(id);
+            pool = AdPool(id);
         }
-            return pools[(int)id].Spawn(prefab, position, rotation, parent);
+        return pools[(int)id].Spawn(prefab, position, rotation, parent);
     }
 
     public T Spawn<T>(PoolType id, GameObject prefab, Vector3 position = default(Vector3),
         Quaternion rotation = default(Quaternion),
-        Transform parent = null) where T: class
+        Transform parent = null) where T : class
     {
         var val = pools[(int)id].Spawn(prefab, position, rotation, parent);
         return val.GetComponent<T>();
@@ -51,16 +51,20 @@ public class ManagerPool : ManagerBase
 
     public void Despawn(PoolType id, GameObject obj)
     {
-        pools[(int)id].Despawn(obj);
+        if (obj.GetComponent<IPoolable>().IsPoolable)
+        {
+            pools[(int)id].Despawn(obj);
+            obj.GetComponent<IPoolable>().IsPoolable = false;
+        }       
+
     }
 
     public void Dispose()
     {
         foreach (var poolsValue in pools.Values)
         {
-            poolsValue.Dispose();      
+            poolsValue.Dispose();
         }
         pools.Clear();
     }
 }
-
