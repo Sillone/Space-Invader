@@ -15,7 +15,7 @@ MonoBehaviour:
   Lelv: 1
   Waves: 3
   currentWaves: 1
-  EnemyCountInWave: 6
+  EnemyCountInWave: 3
   EnemyPrefabs:
   - {fileID: 2811687300824640229, guid: 69057953b9d5b5c45aae467dde395d96, type: 3}
   - {fileID: 7878242037029754057, guid: c7a7197b07123194a9c29ea44d2b4850, type: 3}

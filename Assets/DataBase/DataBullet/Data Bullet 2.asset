@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Data Bullet 2
   m_EditorClassIdentifier: 
   Damage: 9
-  speed: 45
+  speed: 30
